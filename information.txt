@@ -1,5 +1,0 @@
-i - important
-ii - very important 
-vii - very very important
-cii - important for concept
-MAI - Math question important
