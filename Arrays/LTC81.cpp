@@ -1,3 +1,7 @@
+/*- Merge sorted array -*/
+
+//////// Question number 88.
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -20,21 +24,6 @@ void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
     while (j >= 0)
         nums1[k--] = nums2[j--];
 }
-
-// void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
-// {
-//     int j = 0;
-
-//     for (int i = 0; i < m; i++)
-//     {
-//         if (nums1[i] == 0)
-//         {
-//             nums1[i] = nums2[j++];
-//         }
-//     }
-
-//     sort(nums1.begin(), nums1.end());
-// }
 
 int main()
 {

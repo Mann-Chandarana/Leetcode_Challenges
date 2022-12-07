@@ -1,5 +1,7 @@
-/* Middle of the linked list */
+/*- Middle of the linked list -*/
+
 //////// Question number 876.
+
 
 #include <bits/stdc++.h>
 using namespace std;
