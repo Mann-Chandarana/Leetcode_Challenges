@@ -1,3 +1,7 @@
+/*- Implement Queue using Stacks -*/
+
+//////// Question number 232.
+
 #include <bits/stdc++.h>
 using namespace std;
 
