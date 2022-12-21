@@ -32,6 +32,8 @@ map<char, float> expected_freq = {
 
 vector<string> possible_str(26, "");
 
+/***************** Encryption **************************/
+
 string encrypt(string s, int k)
 {
     string answer = "";
@@ -49,6 +51,37 @@ string encrypt(string s, int k)
     }
     return answer;
 }
+
+/***************** decryption **************************/
+
+string decryptt(string cipher, int k)
+{
+    string plain = "";
+
+    for (int j = 0; j < cipher.length(); j++)
+    {
+        if (cipher[j] == ' ')
+        {
+            plain += ' ';
+            continue;
+        }
+
+        int val_int = (cipher[j] - 'a');
+        int shift = val_int - k;
+        if (shift < 0)
+        {
+            plain += char('z' + shift + 1);
+        }
+        else
+        {
+            plain += (char('a' + shift));
+        }
+    }
+    
+    return plain;
+}
+
+/***************** Brute force **************************/
 
 double freq_score(string c, int k)
 {
@@ -99,7 +132,7 @@ void decrypt(string str)
             }
         }
         possible_str[i] = answer;
-        cout << "After shift " << i << " the value is " << answer << " predicted score " << freq_score(answer, i) << endl;
+        cout << "After shift " << i << " the value is :- " << answer << " predicted score " << freq_score(answer, i) << endl;
     }
 }
 
@@ -133,8 +166,12 @@ int main()
     cin >> k;
 
     string cipher = encrypt(str, k);
-    cout << "Cipher text is " << cipher << "\n"
+    cout << "Encryption of plain text :- " << cipher << "\n"
          << endl;
+
+    cout << "Decrytion of cipher text :- " << decryptt(cipher, k) << "\n"
+         << endl;
+
     decrypt(cipher);
 
     cout << "\nPredicted shift is: " << Predicted_answer(cipher) << endl;
