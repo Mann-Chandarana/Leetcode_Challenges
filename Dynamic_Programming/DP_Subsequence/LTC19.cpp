@@ -1,6 +1,5 @@
 /* No of subset with sum equals to k :- geeks for geeks */
 
-
 #include <bits/stdc++.h>
 using namespace std;
 
