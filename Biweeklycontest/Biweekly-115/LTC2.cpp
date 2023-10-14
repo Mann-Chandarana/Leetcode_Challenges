@@ -1,3 +1,10 @@
+/*--------  Medium --------*/
+
+/*- Longest Unequal Adjacent Groups Subsequence I -*/
+
+//////// Question number 2900.
+
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -5,6 +12,26 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef vector<string> vs;
+
+/* Approach -1) */
+
+vector<string> getWordsInLongestSubsequence(int n, vector<string> &words, vector<int> &groups)
+{
+    vs ans;
+    int flag = -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (groups[i] != flag)
+        {
+            flag = groups[i];
+            ans.push_back(words[i]);
+        }
+    }
+    return ans;
+}
+
+/* Approach -2) */
 
 vector<string> getWordsInLongestSubsequence(int n, vector<string> &words, vector<int> &groups)
 {
