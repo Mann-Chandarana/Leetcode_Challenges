@@ -9,6 +9,55 @@ using namespace std;
 #define ll long long
 #define all(v) v.begin(), v.end()
 
+/* Using DSU */
+
+vector<int> parent;
+int components;
+
+int find(int u)
+{
+    if (parent[u] == u)
+        return u;
+
+    return parent[u] = find(parent[u]);
+}
+
+bool Union(int par, int child)
+{
+    int child_ka_parent = find(child);
+
+    if (child_ka_parent != child)
+        return false;
+
+    int parent_ka_parent = find(par);
+
+    if (parent_ka_parent == child_ka_parent)
+        return false;
+
+    parent[child] = par;
+    components--;
+    return true;
+}
+
+bool validateBinaryTreeNodes(int n, vector<int> &leftChild, vector<int> &rightChild)
+{
+    components = n;
+    parent.resize(n);
+
+    for (int i = 0; i < n; i++)
+        parent[i] = i;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (leftChild[i] >= 0 and !Union(i, leftChild[i]))
+            return false;
+
+        if (rightChild[i] >= 0 and !Union(i, rightChild[i]))
+            return false;
+    }
+    return components == 1;
+}
+
 /* Approach -1)  */
 
 bool validateBinaryTreeNodes(int n, vector<int> &leftChild, vector<int> &rightChild)
@@ -78,8 +127,8 @@ bool validateBinaryTreeNodes(int n, vector<int> &leftChild, vector<int> &rightCh
 
 bool isBinaryTreeValid(int root, vector<int> &leftChild, vector<int> &rightChild)
 {
-    vector<bool> visited(leftChild.size(), false); // Tracks visited nodes
-    queue<int> nodeQueue;                          // Queue for BFS traversal
+    vector<bool> visited(leftChild.size(), false);
+    queue<int> nodeQueue;                         
     nodeQueue.push(root);
     visited[root] = true;
 
@@ -90,21 +139,21 @@ bool isBinaryTreeValid(int root, vector<int> &leftChild, vector<int> &rightChild
 
         if (leftChild[current] != -1)
         {
-            if (visited[leftChild[current]]) // Check for cycle
+            if (visited[leftChild[current]]) 
                 return false;
 
             nodeQueue.push(leftChild[current]);
-            visited[leftChild[current]] = true; // Mark left child as visited
+            visited[leftChild[current]] = true;
         }
 
         // Check right child
         if (rightChild[current] != -1)
         {
-            if (visited[rightChild[current]]) // Check for cycle
+            if (visited[rightChild[current]]) 
                 return false;
 
             nodeQueue.push(rightChild[current]);
-            visited[rightChild[current]] = true; // Mark right child as visited
+            visited[rightChild[current]] = true; 
         }
     }
 
