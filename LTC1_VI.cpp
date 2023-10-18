@@ -1,4 +1,4 @@
-/*--------  Medium --------*/
+/*--------  Hard --------*/
 
 /*- Max Points on a Line -*/
 
@@ -7,37 +7,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/* Approach -1) */
+
 /* O(n^3) */
 
-// int maxPoints(vector<vector<int>> points)
-// {
-//     if (points.size() <= 2)
-//         return points.size();
+int maxPoints(vector<vector<int>> points)
+{
+    if (points.size() <= 2)
+        return points.size();
 
-//     int maxi = 0;
-//     int n = points.size();
+    int maxi = 0;
+    int n = points.size();
 
-//     for (int i = 0; i < n - 1; i++)
-//     {
-//         for (int j = i + 1; j < n; j++)
-//         {
-//             int x1 = points[i][0], x2 = points[j][0];
-//             int y1 = points[i][1], y2 = points[j][1];
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            int x1 = points[i][0], x2 = points[j][0];
+            int y1 = points[i][1], y2 = points[j][1];
 
-//             int total = 2;
+            int total = 2;
 
-//             for (int k = 0; k != i and k < n and k != j; k++)
-//             {
-//                 int x = points[k][0], y = points[k][1];
-//                 if ((y2 - y1) * (x - x1) == (x2 - x1) * (y - y1))
-//                     total++;
-//             }
-//             maxi = max(maxi, total);
-//         }
-//     }
+            for (int k = 0; k != i and k < n and k != j; k++)
+            {
+                int x = points[k][0], y = points[k][1];
+                if ((y2 - y1) * (x - x1) == (x2 - x1) * (y - y1))
+                    total++;
+            }
+            maxi = max(maxi, total);
+        }
+    }
 
-//     return maxi;
-// }
+    return maxi;
+}
+
+/* Approach -2) */
 
 /* O((n^2)logn) */
 

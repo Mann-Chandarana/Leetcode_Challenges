@@ -26,7 +26,8 @@ int FilledBuckets(int N, vector<int> queries)
         }
         else if (element == 3)
         {
-             if (buckets_filled == 0) continue;
+            if (buckets_filled == 0)
+                continue;
             if (odd_filled)
             {
                 buckets_filled -= (N - N / 2);
@@ -35,9 +36,7 @@ int FilledBuckets(int N, vector<int> queries)
         }
 
         else if (element == 4)
-        {
             buckets_filled = 0;
-        }
     }
     return buckets_filled;
 }

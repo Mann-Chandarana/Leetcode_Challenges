@@ -32,6 +32,8 @@ string addBinary(string a, string b)
     return answer;
 }
 
+/* Approach -2) */
+
 string addBinary(string a, string b)
 {
     string answer = "";
