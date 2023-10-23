@@ -1,3 +1,9 @@
+/*--------  Hard --------*/
+
+/*- Constrained Subsequence Sum -*/
+
+//////// Question number 1425.
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -5,7 +11,37 @@ using namespace std;
 
 typedef pair<int, int> pi;
 
-/* Recursion + Memorization */
+/********* Optimised Approach *********/
+
+int constrainedSubsetSum(vector<int> &nums, int k)
+{
+    int n = nums.size();
+
+    vector<int> dp(n);
+
+    for (int i = 0; i < n; i++)
+        dp[i] = nums[i];
+
+    int result = dp[0];
+    priority_queue<pi> pq;
+
+    int maxR = dp[0];
+
+    pq.push({dp[0], 0});
+
+    for (int i = 1; i < n; i++)
+    {
+        while (!pq.empty() and i - pq.top().second > k)
+            pq.pop();
+
+        dp[i] = max(dp[i], pq.top().first + nums[i]);
+        pq.push({dp[i], i});
+        maxR = max(maxR, dp[i]);
+    }
+    return maxR;
+}
+
+/********* Recursion + Memorization *********/
 
 int solve(int index, int prev, int &k, int &n, vector<int> &nums, vector<vector<int>> &dp)
 {
@@ -44,7 +80,7 @@ int constrainedSubsetSum(vector<int> &nums, int k)
     return solve(0, -1, k, n, nums, dp);
 }
 
-/* Tabulation */
+/********* Tabulation *********/
 
 int constrainedSubsetSum(vector<int> &nums, int k)
 {
@@ -88,7 +124,7 @@ int constrainedSubsetSum(vector<int> &nums, int k)
     return dp[0][0];
 }
 
-/* Tabulation - 2) */
+/********* Tabulation - 2) *********/
 
 int constrainedSubsetSum(vector<int> &nums, int k)
 {
