@@ -27,9 +27,7 @@ bool validPath(int n, vector<vector<int>> &edges, int source, int destination)
         q.pop();
 
         if (curr == destination)
-        {
             return true;
-        }
 
         for (auto neigh : neighs[curr])
         {
@@ -81,7 +79,6 @@ bool validPath(int n, vector<vector<int>> &edges, int source, int destination)
 
     return false;
 }
-
 
 int main()
 {
