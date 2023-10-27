@@ -12,7 +12,7 @@ ll ans = 0;
 
 ll dfs(vector<int> &vis, int node, int seats, vector<int> adj[])
 {
-    vis[node] = 1;
+    vis[node] = true;
     ll count = 1;
 
     for (auto it : adj[node])
@@ -20,8 +20,9 @@ ll dfs(vector<int> &vis, int node, int seats, vector<int> adj[])
         if (!vis[it])
             count += dfs(vis, it, seats, adj);
     }
-    ll x = count / seats;
-    if (count % seats)
+
+    ll x = (count / seats);
+    if (count % seats == 1)
         x++;
     if (node != 0)
         ans += x;
@@ -32,15 +33,13 @@ ll dfs(vector<int> &vis, int node, int seats, vector<int> adj[])
 long long minimumFuelCost(vector<vector<int>> &roads, int seats)
 {
     int n = roads.size();
-    vector<int> adj[n + 1], vis(n + 1, 0);
+
+    vector<int> adj[n + 1], visted(n + 1, 0);
 
     for (auto it : roads)
-    {
         adj[it[0]].push_back(it[1]);
-        adj[it[1]].push_back(it[0]);
-    }
 
-    dfs(vis, 0, seats, adj);
+    dfs(visted, 0, seats, adj);
 
     return ans;
 }

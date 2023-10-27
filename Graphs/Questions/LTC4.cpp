@@ -14,14 +14,10 @@ void dfs(int src, vector<vector<int>> &graph, int end)
 {
     ans.push_back(src);
     if (src == end)
-    {
         answer.push_back(ans);
-    }
 
     for (auto element : graph[src])
-    {
-        dfs(element,graph, end);
-    }
+        dfs(element, graph, end);
 
     ans.pop_back();
 }

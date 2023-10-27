@@ -33,7 +33,7 @@ int maximalNetworkRank(int n, vector<vector<int>> &roads)
 
             if (matrix[i][j] == 1)
                 rank -= 1;
-
+ 
             max_rank = max(max_rank, rank);
         }
     }

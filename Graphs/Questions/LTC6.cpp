@@ -1,4 +1,4 @@
-/*--------  Medium --------*/
+/*-------- Medium --------*/
 
 /*- Find Closest Node to Given Two Nodes -*/
 

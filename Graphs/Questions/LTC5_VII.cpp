@@ -14,13 +14,10 @@ pair<int, int> findCoordinates(int currVal, int n)
     int row = n - (currVal - 1) / n - 1;
     int col = (currVal - 1) % n;
     if (row % 2 == n % 2)
-    {
         return {row, n - 1 - col};
-    }
+
     else
-    {
         return {row, col};
-    }
 }
 
 int snakesAndLadders(vector<vector<int>> &board)
@@ -58,16 +55,13 @@ int snakesAndLadders(vector<vector<int>> &board)
                     visited[row][col] = true;
 
                     if (board[row][col] == -1)
-                    {
                         q.push(curr + j);
-                    }
+
                     else
-                    {
                         q.push(board[row][col]);
-                    }
                 }
             }
-        }   
+        }
         moves++;
     }
 

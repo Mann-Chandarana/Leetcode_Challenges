@@ -11,7 +11,6 @@ using namespace std;
 
 int dfs(int headId, vector<int> &informTime, vector<int> adj[])
 {
-
     int maxTime = 0;
 
     for (auto it : adj[headId])
@@ -21,7 +20,6 @@ int dfs(int headId, vector<int> &informTime, vector<int> adj[])
 }
 int numOfMinutes(int n, int headID, vector<int> &manager, vector<int> &informTime)
 {
-
     vector<int> adj[n];
 
     for (int i = 0; i < manager.size(); i++)
@@ -40,10 +38,7 @@ void DFS(unordered_map<int, vector<int>> &adj, vector<int> &informTime, int curr
     maxTime = max(maxTime, curr_time);
 
     for (int &v : adj[curr_employee])
-    {
-
         DFS(adj, informTime, v, curr_time + informTime[curr_employee]);
-    }
 }
 
 int numOfMinutes(int n, int headID, vector<int> &manager, vector<int> &informTime)

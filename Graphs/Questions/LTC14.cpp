@@ -11,9 +11,9 @@ bool dfs(int node, vector<vector<int>> &adj, vector<int> &color)
 {
     if (color[node] == -1)
         color[node] = 1;
+
     for (auto it : adj[node])
     {
-
         if (color[it] == -1)
         {
             color[it] = 1 - color[node];
@@ -25,6 +25,7 @@ bool dfs(int node, vector<vector<int>> &adj, vector<int> &color)
     }
     return true;
 }
+
 bool isBipartite(vector<vector<int>> &graph)
 {
     int n = graph.size();
