@@ -1,4 +1,4 @@
-/*--------  Hard --------*/
+/*-------- Hard --------*/
 
 /*- Constrained Subsequence Sum -*/
 
