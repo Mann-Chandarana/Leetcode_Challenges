@@ -21,24 +21,24 @@ vector<string> findHighAccessEmployees(vector<vector<string>> &access_times)
     for (auto &i : access_times)
         mp[i[0]].pb(i[1]);
 
-    for (auto &i : mp)
+    for (auto &item : mp)
     {
-        vector<string> vec = i.second;
-        if (vec.size() >= 3)
+        vector<string> vstr = item.second;
+        if (vstr.size() >= 3)
         {
-            sort(all(vec));
+            sort(vstr.begin(),vstr.end());
 
-            for (int i = 0; i < vec.size() - 2; i++)
+            for (int i = 0; i < vstr.size() - 2; i++)
             {
-                if ((stoi(vec[i + 2]) - stoi(vec[i])) < 100)
+                if ((stoi(vstr[i + 2]) - stoi(vstr[i])) < 100)
                 {
-                    answer.pb(element.first);
+                    ans.pb(item.first);
                     break;
                 }
             }
         }
     }
-    return answer;
+    return ans;
 }
 
 int main()
