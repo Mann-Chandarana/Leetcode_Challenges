@@ -1,4 +1,4 @@
-/* 100143. Count Tested Devices After Test Operations */
+/* 2960. Count Tested Devices After Test Operations */
 
 #include <bits/stdc++.h>
 using namespace std;
