@@ -123,7 +123,7 @@ int countPaths(TreeNode *root, int number)
     if (root->left == NULL and root->right == NULL)
     {
         bool answer = false;
-        if (number & (number-1))
+        if (!(number & (number-1)))
             answer = true;
 
         return answer;
