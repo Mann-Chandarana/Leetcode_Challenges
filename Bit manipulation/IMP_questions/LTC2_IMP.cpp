@@ -37,9 +37,9 @@ int countPaths(TreeNode *root, vector<int> &arr)
     if (root == NULL)
         return 0;
 
+    arr[root->val]++;
     if (root->left == NULL and root->right == NULL)
     {
-        arr[root->val]++;
 
         bool answer = false;
         if (pseudoPalindromic(arr))
@@ -51,9 +51,10 @@ int countPaths(TreeNode *root, vector<int> &arr)
 
     ///// Traversing left side
 
-    arr[root->val]++;
-
     int count_left = countPaths(root->left, arr);
+    
+    ///// Traversing Right side
+
     int count_right = countPaths(root->right, arr);
 
     arr[root->val]--;
@@ -81,25 +82,25 @@ int countPaths(TreeNode *root, int number)
     if (root == NULL)
         return 0;
 
+    number ^= (1 << (root->val));
+
     if (root->left == NULL and root->right == NULL)
     {
-        number ^= (1 << (root->val));
         bool answer = false;
         if (pseudoPalindromic(number))
             answer = true;
-        number ^= (1 << (root->val));
 
         return answer;
     }
 
     ///// Traversing left side
 
-    number ^= (1 << (root->val));
-
     int count_left = countPaths(root->left, number);
+
+    ///// Traversing right side
+
     int count_right = countPaths(root->right, number);
 
-    number ^= (1 << (root->val));
 
     return count_left + count_right;
 }
