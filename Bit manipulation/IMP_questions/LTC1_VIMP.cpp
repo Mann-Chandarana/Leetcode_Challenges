@@ -11,6 +11,8 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 #define pb push_back
 
+/*** Using Bit manipulation ***/
+
 void convert(string str, vector<int> &ArrAsBits)
 {
     int charBitset = 0;
@@ -60,6 +62,60 @@ int maxLength(vector<string> &arr)
         convert(str, ArrAsBits);
 
     return solve(0, 0, ArrAsBits);
+}
+
+/*** Using Dynamic Programming ***/
+
+unordered_map<string, int> dp;
+
+bool hasDuplicate(string s1, string s2)
+{
+    vector<int> freq(26, 0);
+
+    for (auto ch : s1)
+    {
+        if (freq[ch - 'a'] > 0)
+            return true;
+
+        freq[ch - 'a']++;
+    }
+
+    for (auto ch : s2)
+    {
+        if (freq[ch - 'a'] > 0)
+            return true;
+
+        freq[ch - 'a']++;
+    }
+    return false;
+}
+
+int fn(int index, string temp, vector<string> &arr)
+{
+    if (index >= arr.size())
+        return temp.length();
+
+    int include = 0, exclude = 0;
+
+    if (dp.find(temp) != dp.end())
+        return dp[temp];
+
+    if (hasDuplicate(temp, arr[index]))
+    {
+        exclude = fn(index + 1, temp, arr);
+    }
+    else
+    {
+        exclude = fn(index + 1, temp, arr);
+        temp += arr[index];
+        include = fn(index + 1, temp, arr);
+    }
+    return dp[temp] = max(exclude, include);
+}
+
+int maxLength(vector<string> &arr)
+{
+    return fn(0, "", arr);
 }
 
 int main()
