@@ -19,7 +19,7 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-//// Using Simple Traversal :- Approach -1)
+/********************** Using Simple Traversal :- Approach -1)  **********************/
 
 int pseudoPalindromic(vector<int> &arr)
 {
@@ -40,7 +40,6 @@ int countPaths(TreeNode *root, vector<int> &arr)
     arr[root->val]++;
     if (root->left == NULL and root->right == NULL)
     {
-
         bool answer = false;
         if (pseudoPalindromic(arr))
             answer = true;
@@ -68,7 +67,7 @@ int pseudoPalindromicPaths(TreeNode *root)
     return countPaths(root, arr);
 }
 
-/// Using bit manipulation :- Approach -2)
+/********************** Using bit manipulation :- Approach -2)  **********************/
 
 int pseudoPalindromic(int number)
 {
@@ -88,6 +87,43 @@ int countPaths(TreeNode *root, int number)
     {
         bool answer = false;
         if (pseudoPalindromic(number))
+            answer = true;
+
+        return answer;
+    }
+
+    ///// Traversing left side
+
+    int count_left = countPaths(root->left, number);
+
+    ///// Traversing right side
+
+    int count_right = countPaths(root->right, number);
+
+
+    return count_left + count_right;
+}
+
+int pseudoPalindromicPaths(TreeNode *root)
+{
+    int number = 0;
+    return countPaths(root, number);
+}
+
+
+/********************** Using bit manipulation :- Approach -3)  **********************/
+
+int countPaths(TreeNode *root, int number)
+{
+    if (root == NULL)
+        return 0;
+
+    number ^= (1 << (root->val));
+
+    if (root->left == NULL and root->right == NULL)
+    {
+        bool answer = false;
+        if (number & (number-1))
             answer = true;
 
         return answer;
