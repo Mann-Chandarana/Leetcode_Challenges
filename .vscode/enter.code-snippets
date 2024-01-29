@@ -12,10 +12,10 @@
 			"#include <bits/stdc++.h>",
 			"using namespace std;",
 			"#define ll long long",
-            "#define all(v) v.begin(), v.end()",
-            "#define vpii vector<pair<int, int>>",
-            "#define vppi vector<pair<pair<int, int>, int>>",
-            "#define umps unordered_map<string, vector<string>>\n",
+            "#define all(v) v.begin(), v.end()\n",
+            "typedef vector<pair<int, int>> vpii;"
+             "typedef vector<pair<pair<int, int>, int>> vppi;"
+             "typedef unordered_map<string, vector<string>> umps;\n"
 			 "int main()",
 			 "{",
 			 "\t$1",
