@@ -9,6 +9,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+Time complexity :- O(N)
+Space complexity :- O(1)
+*/
+
+vector<int> dailyTemperatures(vector<int> &temperatures)
+{
+    int n = temperatures.size();
+
+    vector<int> answer(n, 0);
+
+    int hottest = -1;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (temperatures[i] >= hottest)
+        {
+            hottest = temperatures[i];
+            continue;
+        }
+        int days = 1;
+
+        while (temperatures[i + days] <= temperatures[i])
+            days += answer[i + days];
+
+        answer[i] = days;
+    }
+    return answer;
+}
+
+/*
+Time complexity :- O(N)
+Space complexity :- O(N)
+*/
+
 vector<int> dailyTemperatures(vector<int> &T)
 {
     int n = T.size();
@@ -22,31 +57,6 @@ vector<int> dailyTemperatures(vector<int> &T)
             int j = st.top();
             st.pop();
             answer[j] = i - j;
-        }
-
-        st.push(i);
-    }
-    return answer;
-}
-
-vector<int> dailyTemperatures(vector<int> &T)
-{
-    int n = T.size();
-    stack<int> st;
-    st.push(n - 1);
-
-    vector<int> answer(n,0);
-
-    for (int i = n - 2; i >= 0; i--)
-    {
-        int value = T[i];
-        while (!st.empty() and value >= T[st.top()])
-        {
-            st.pop();
-        }
-        if (!st.empty())
-        {
-            answer[i] = st.top() - i;
         }
 
         st.push(i);
