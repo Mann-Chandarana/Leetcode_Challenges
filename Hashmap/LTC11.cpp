@@ -1,3 +1,9 @@
+/*-------- Medium -----------*/
+
+/*- Minimum Deletions to Make Character Frequencies Unique -*/
+
+//////// Question number 1647.
+
 #include <bits/stdc++.h>
 using namespace std;
 #define all(v) v.begin(), v.end()
