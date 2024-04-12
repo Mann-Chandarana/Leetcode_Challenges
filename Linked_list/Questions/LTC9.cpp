@@ -18,6 +18,8 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+/* Approach -1) */
+
 ListNode *reverse(ListNode *head)
 {
     if (head == NULL)
@@ -63,6 +65,38 @@ void reorderList(ListNode *head)
     }
     if (reverseHead != NULL)
         dummy->next = reverseHead, reverseHead = NULL;
+}
+
+/* Approach -2) */
+
+ListNode *curr;
+
+void solve(ListNode *head)
+{
+    if (head == NULL)
+        return;
+
+    solve(head->next);
+
+    ListNode *temp = curr->next;
+    if (temp == NULL)
+        return;
+    else if (head == curr)
+    {
+        head->next = NULL;
+        return;
+    }
+
+    curr->next = head;
+    head->next = temp == head ? NULL : temp;
+
+    curr = temp;
+}
+
+void reorderList(ListNode *head)
+{
+    curr = head;
+    solve(head);
 }
 
 int main()
